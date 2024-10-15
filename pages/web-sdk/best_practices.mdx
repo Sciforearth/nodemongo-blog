@@ -1,0 +1,36 @@
+#Best practices
+Below are some best practices listed below to use in your web apps.
+
+
+##initialize
+if you are using some framework like react/nextJs you can initialize and export app from your files
+
+example, App.js
+
+```js
+export const app = await initializeNodemongo(<appId>)
+function App(){
+
+return (
+    <div>  
+    <div>
+    )
+}
+
+```
+Then use it in all your other components
+
+```js
+import {app} from "./App.js"
+function MyComponent(){
+
+    console.log(app.currentUser)
+
+return (
+    <div>  
+    <div>
+    )
+}
+
+```
+

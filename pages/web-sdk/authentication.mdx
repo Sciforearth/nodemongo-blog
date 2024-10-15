@@ -1,0 +1,92 @@
+# Authentication
+
+Nodemongo is a cross platform backend development system that helps you create fast and secure backend that reduces your backend development time by 70%.
+
+## Prerequsite
+
+Install and initialize the application. see [getting started](/web-sdk/getting_started)
+
+## Anonymous Login
+
+Anonymous authentication is the easiest of authentication
+
+
+```javascript
+
+// let app = await initializeNodemongo(<appId>)
+
+async function login(){
+
+let credential = CredentialTypes.anonymous()
+let user = await app.login(credential)
+
+}
+
+
+```
+
+## Email OTP Login
+To use email password login you must register and verify the user first.
+
+
+To send verification email again use
+
+```javascript
+app.send_email_otp(email) 
+```
+Note: Please inform users to check the spam folder also and if so to mark it not spam for future OTPs and conversations.
+
+to verify email OTP 
+```js
+const credential = CredentialTypes.email_otp(<email>,<otp>)
+let user  = await app.login(credential)
+```
+
+
+
+## Google Login
+
+### Prerequsite
+Go to google cloud console and create a OAuth ClientId and include your development host eg. localhost:3000 for development purposes
+ 
+```javascript
+let credential = CredentialTypes.google(<clientId>)
+let user = await app.login(credential)
+```
+
+
+To use google login you must go to **Google cloud console** and create a client Id
+[see video](https://youtube.com)
+
+
+
+
+## Phone Auth
+phone auth requires two steps 
+#### step1. sending OTP
+Please make sure the phone contains the country code eg. +1 
+
+```js
+app.send_phone_otp(<phoneNumber>)
+```
+
+once the user recieves the OTP take the otp and call
+
+```js
+const credential = CredentialTypes.phone(<phoneNumber>,<OTP>);
+const user = await app.login(credential)
+```
+
+
+
+
+
+## LogOut
+use the code snippet below to log out user.
+```js
+ app.currentUser.logOut()
+ //your code
+```
+
+
+
