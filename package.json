@@ -1,7 +1,7 @@
 {
-  "name": "NodeMongo documentation",
+  "name": "nextra-docs-template",
   "version": "0.0.1",
-  "description": "NodeMongo documentation",
+  "description": "Nextra docs template",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
