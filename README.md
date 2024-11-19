@@ -1,6 +1,6 @@
 # Nextra Docs Template 
 
-This is a template for creating documentation with [Nextra](https://nextra.site).
+Nodemongo documentation [Nodemongo](https://blog.nodemongo.revtrance.com).
 
 [**Live Demo →**](https://nextra-docs-template.vercel.app)
 

@@ -6,9 +6,9 @@ Nodemongo is a cross platform backend development system that helps you create f
 
 Install and initialize the application. see [getting started](/web-sdk/getting_started)
 
-## Anonymous Login
+### Anonymous Login
 
-Anonymous authentication is the easiest of authentication
+Anonymous is one of the most easiest authentication method available in the market but should be used with causion as it is not a reliable type of authentication for most cases.
 
 
 ```javascript
@@ -25,22 +25,53 @@ let user = await app.login(credential)
 
 ```
 
-## Email OTP Login
+### Email password Login
 To use email password login you must register and verify the user first.
 
+
+#### Register
+```javascript
+let await = app.registerUser(email,password)
+
+```
+
+upon successful registration an email will be sent to the user.
+You might want to prompt user to check their email and spam
 
 To send verification email again use
 
 ```javascript
-app.send_email_otp(email) 
+app.resendEmail(email,method) // method can be 'token' or 'otp'
 ```
-Note: Please inform users to check the spam folder also and if so to mark it not spam for future OTPs and conversations.
+A verification email will be sent to User that will look like the following. 
+```
+https://yourWebsite.com/yourVerificationPage?token=token
+```
+[how to verify token?](verify-registeration-token])
 
-to verify email OTP 
-```js
-const credential = CredentialTypes.email_otp(<email>,<otp>)
-let user  = await app.login(credential)
+Once the user is successfully registered you can continue with the Login
 ```
+const credential = CredentialTypes.email_password(email,password)
+const result = await app.login(credential)
+```
+### Email OTP Login
+You can also sign-in user with thier email and OTP. Here's how you can do it.
+
+Step1. Send the otp to the user's email
+
+```js
+
+app.send_email_otp(email)
+
+```
+Step2. You can use that OTP and the email to login to the User.
+```js
+
+const credential = CredentialTypes.email_otp(email)
+const result = await app.login(credential)
+
+```
+Note: If you are using your own email credentials you might want to prompt users to check their email also.
 
 
 
