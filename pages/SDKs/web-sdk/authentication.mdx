@@ -13,17 +13,21 @@ Anonymous is one of the most easiest authentication method available in the mark
 
 ```javascript
 
-// let app = await initializeNodemongo(<appId>)
+// let app = await initializeNodemongo(<appId>,<selfHostUrl>?)
 
-async function login(){
+async function yourOwnLoginFunction(){
 
 let credential = CredentialTypes.anonymous()
-let user = await app.login(credential)
+let user = await app.login(credential,<authKey>)
 
 }
 
 
 ```
+**authKey** :  (optional) A unique 32 bit key. If you are using **self hosted backend you need to pass this** field.
+
+authKey is used to verify your users at your custom backend and can be found in .env file.
+
 
 ### Email password Login
 To use email password login you must register and verify the user first.

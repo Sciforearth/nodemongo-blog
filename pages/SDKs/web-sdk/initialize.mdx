@@ -1,0 +1,17 @@
+
+## Initialize
+
+This code is to be placed in the starting of your web application.
+If you are using App.js/root page.js would be the ideal place to initialize nodemongo.
+```javascript
+import {initializeNodemongo} from "nodemongo-web-sdk"
+
+export const app = await initializeNodemongo(<appId>, <selfHostUrl>?)
+
+
+```
+**appId** : your unique application Id in your project. 
+
+**selfHostUrl** : (optional) If you are self hosting the application by downloading the app from nodemongo. you can provide the url of your server.
+
+Yes! our sdks are fully compatible with you selfhosting the project!
