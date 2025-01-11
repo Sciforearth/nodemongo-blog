@@ -1,1 +1,76 @@
 
+### **Best Practices for Flutter**
+
+Below are the best practices for using the NodeMongo app in your Flutter app.
+
+### **Initialize the App**
+
+You can initialize the NodeMongo app in your main file and export it for use in other parts of your Flutter app.
+
+#### **main.dart**
+```dart
+import 'package:flutter/material.dart';
+import 'package:your_package/rembase-dart-sdk.dart'; // Import NodeMongo package
+
+// Initialize NodeMongo with appId
+final NodeMongoApp nodeMongoApp =
+      NodeMongoApp(appId: 'appId');
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter App',
+      home: HomePage(),
+    );
+  }
+}
+```
+
+Then, in other files or components, you can import and use the initialized `nodeMongoApp`.
+
+### **Use in Other Components**
+
+#### **home_page.dart**
+```dart
+import 'package:flutter/material.dart';
+import 'main.dart';  // Import the file where the app is initialized
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("NodeMongo Example"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            // Access the current user from the initialized app
+            print(nodeMongoApp.currentUser);
+          },
+          child: Text('Check Current User'),
+        ),
+      ),
+    );
+  }
+}
+```
+
+---
+
+### **Explanation**:
+1. **App Initialization**:  
+   - The `NodeMongoApp(appId: 'appId');` function is called in the `main.dart` file, ensuring the app is initialized before the Flutter app starts.
+   
+2. **Global Usage**:  
+   - By importing `main.dart`, you can access the `nodeMongoApp` in any widget or page where it is needed, just like the original example in React/Next.js.
+
+3. **Clean Code**:  
+   - The separation of app initialization and component usage follows best practices, keeping your code modular and clean.
+
+This approach helps in maintaining the app structure and ensures that you can easily manage and access your NodeMongo app across various widgets in your Flutter application. 
