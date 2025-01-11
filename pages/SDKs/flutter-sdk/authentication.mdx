@@ -27,13 +27,11 @@ Future<void> yourOwnLoginFunction() async {
 
   response
       .onSuccess((data) {
-        // Handle success, use the returned data
-        debugPrint("Login successful: $data");
-      })
-      .onError((err) {
-        // Handle errors, implement error mechanism
-        debugPrint("Login failed: $err");
-      });
+      // Handle data (e.g., update UI or notify user)
+    })
+    .onError((error) {
+      // Handle error (e.g., show error message to the user)
+    });
 }
 
 ```
@@ -48,10 +46,10 @@ final response = await nodeMongoApp.registerUser(email, password);
 
 response
     .onSuccess((data) {
-      // Handle data
+      // Handle data (e.g., update UI or notify user)
     })
-    .onError((message) {
-      // Handle error
+    .onError((error) {
+      // Handle error (e.g., show error message to the user)
     });
 
 ```
@@ -66,10 +64,10 @@ final response = await nodeMongoApp.resendVerificationEmail(emailController.text
 
 response
     .onSuccess((data) {
-      // Handle data
+      // Handle data (e.g., update UI or notify user)
     })
     .onError((error) {
-      // Handle error
+      // Handle error (e.g., show error message to the user)
     });
 
 ```
