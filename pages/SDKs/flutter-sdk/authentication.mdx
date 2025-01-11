@@ -1,0 +1,245 @@
+# Authentication
+
+Rembase is a cross platform backend development system that helps you create fast and secure backend that reduces your backend development time by 70%.
+
+## Prerequsite
+
+Install and initialize the application. see [getting started](/flutter-sdk/getting_started)
+
+### Anonymous Login
+
+Anonymous is one of the most easiest authentication method available in the market but should be used with causion as it is not a reliable type of authentication for most cases.
+
+
+```dart
+
+final NodeMongoApp nodeMongoApp = NodeMongoApp(
+  appId: <appId>, 
+  user: <NodeMongoUser>?, // Optional user initialization
+);
+
+Future<void> yourOwnLoginFunction() async {
+  // Create anonymous credentials
+  final CredentialTypes credential = CredentialTypes.anonymous();
+
+  // Attempt anonymous login
+  final response = await nodeMongoApp.anonymousLogin(credential);
+
+  response
+      .onSuccess((data) {
+        // Handle success, use the returned data
+        print("Login successful: $data");
+      })
+      .onError((err) {
+        // Handle errors, implement error mechanism
+        debugPrint("Login failed: $err");
+      });
+}
+
+```
+
+### Email password Login
+To use email password login you must register and verify the user first.
+
+
+#### Register
+```dart
+final response = await nodeMongoApp.registerUser(email, password);
+
+response
+    .onSuccess((data) {
+      // Handle data
+    })
+    .onError((message) {
+      // Handle error
+    });
+
+```
+
+upon successful registration an email will be sent to the user.
+You might want to prompt user to check their email and spam
+
+To send verification email again use
+
+```dart
+final response = await nodeMongoApp.resendVerificationEmail(emailController.text);
+
+response
+    .onSuccess((data) {
+      // Handle data
+    })
+    .onError((error) {
+      // Handle error
+    });
+
+```
+A verification email will be sent to User.
+
+[how to verify token?](verify-registeration-token])
+
+Once the user is successfully registered you can continue with the Login
+```
+final credentials = CredentialTypes.emailPassword(
+  email: email, 
+  password: password,
+);
+
+final response = await nodeMongoApp.login(credentials);
+
+response
+    .onSuccess((data) {
+      // Handle data (e.g., update UI or save user info)
+    })
+    .onError((error) {
+      // Handle error (e.g., show error message to the user)
+    });
+
+```
+### Email OTP Login
+You can also sign-in user with thier email and OTP. Here's how you can do it.
+
+Step1. Send the otp to the user's email
+
+```dart
+
+final response = await nodeMongoApp.sendEmailOtp(email);
+
+response
+    .onSuccess((data) {
+      // Handle data (e.g., update UI or notify user)
+    })
+    .onError((error) {
+      // Handle error (e.g., show error message to the user)
+    });
+
+```
+Step2. You can use that OTP and the email to login to the User.
+```dart
+
+final CredentialTypes credentials = CredentialTypes.emailOtp(email, otp)
+final response = await nodeMongoApp.login(credentials);
+    response
+    .onSuccess((data) {
+      // Handle data (e.g., update UI or notify user)
+    })
+    .onError((error) {
+      // Handle error (e.g., show error message to the user)
+    });
+
+```
+Note: If you are using your own email credentials you might want to prompt users to check their email also.
+
+
+
+## Google Login
+
+### Prerequsite
+### **Steps to Set Up OAuth for `google_sign_in` in Google Cloud Console**
+
+1. **Create and Configure Project**  
+   - Go to [Google Cloud Console](https://console.cloud.google.com/).  
+   - Create a new project, enable **Google Identity Services API**, and set up the OAuth consent screen (external/internal).  
+
+2. **Create OAuth Credentials**  
+   - Go to **APIs & Services > Credentials > Create Credentials > OAuth 2.0 Client ID**.  
+   - Select **Application Type**: Android.  
+   - Add your app’s **package name** and **SHA-1 key** (generated using `myKey.jks`).  
+
+3. **Generate `myKey.jks` File**  
+   Run the following command to generate the keystore file:  
+   ```bash
+   keytool -genkey -v -keystore myKey.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+   ```  
+   Follow the prompts to set the alias, key password, and store password.
+
+4. **Add Keystore in `build.gradle`**  
+   Update the `android/app/build.gradle` file:  
+   ```gradle
+   android {
+       signingConfigs {
+           release {
+               keyAlias 'upload'
+               keyPassword 'your_password'
+               storeFile file('myKey.jks')
+               storePassword 'your_password'
+           }
+       }
+       buildTypes {
+           release {
+               signingConfig signingConfigs.debug
+           }
+       }
+   }
+   ```
+
+5. **Download `google-services.json`**  
+   - Add `google-services.json` (from Google Cloud Console) to `android/app/`.  
+
+---
+
+```dart
+final response = await nodeMongoApp.googleLogin();
+
+response
+    .onSuccess((data) {
+      // Handle data (e.g., update UI or save user info)
+    })
+    .onError((error) {
+      // Handle error (e.g., show error message to the user)
+    });
+
+```
+
+
+To use google login you must go to **Google cloud console** and create a client Id
+[see video](https://www.youtube.com/watch?v=E5WgU6ERZzA&t=570s)
+
+
+
+
+## Phone Auth
+phone auth requires two steps 
+#### step1. sending OTP
+Please make sure the phone contains the country code eg. +1 
+
+```dart
+final response = await nodeMongoApp.sendPhoneOtp(<phoneNumber>);
+
+response
+    .onSuccess((data) {
+      // Handle data (e.g., update UI or notify user)
+    })
+    .onError((error) {
+      // Handle error (e.g., show error message to the user)
+    });
+
+```
+
+once the user recieves the OTP take the otp and call
+
+```dart
+final CredentialTypes credential = CredentialTypes.phone(<phoneNumber>, <OTP>);
+
+final response = await nodeMongoApp.login(credential);
+response
+    .onSuccess((data) {
+      // Handle data (e.g., update UI or notify user)
+    })
+    .onError((error) {
+      // Handle error (e.g., show error message to the user)
+    });
+```
+
+
+
+
+
+## LogOut
+use the code snippet below to log out user.
+```dart
+ await NodeMongoUser.logOut();
+ //your code
+```
+
+
+
