@@ -28,7 +28,7 @@ Future<void> yourOwnLoginFunction() async {
   response
       .onSuccess((data) {
         // Handle success, use the returned data
-        print("Login successful: $data");
+        debugPrint("Login successful: $data");
       })
       .onError((err) {
         // Handle errors, implement error mechanism
