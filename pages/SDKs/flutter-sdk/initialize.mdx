@@ -1,0 +1,26 @@
+### Flutter Code Example:
+
+```dart
+import 'package:rembase_dart_sdk/rembase_dart_sdk.dart';
+
+Future<void> initializeNodemongo() async {
+  const appId = 'YOUR_APPID'; // Your unique application Id
+
+  try {
+    final nodeMongoApp = NodeMongoApp(appId: appId);
+    print('Nodemongo Initialized');
+  } catch (e) {
+    print('Error initializing Nodemongo: $e');
+  }
+}
+
+void main() {
+  runApp(MyApp());
+  initializeNodemongo();
+}
+```
+
+### Explanation:
+- Replace `'YOUR_APPID'` with your actual `appId`.
+
+This setup initializes `nodemongo` for your Flutter app using the `rembase_dart_sdk` package.
