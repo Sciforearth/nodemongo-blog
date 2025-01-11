@@ -1,11 +1,11 @@
+# Function Calls
 
-Function Calls
-Prerequisite
-
+## Prerequisite
 The app must be initialized see here and user must be logged in authenticate
-code snippet
+## code snippet
 
 // Ensure app is initialized and user is authenticated before calling the function
+```dart
 final response = await NodeMongoUser.callFunction(
     functionName, listOfArguments, context);
 
@@ -16,3 +16,4 @@ response
     .onError((error) {
       // Handle error (e.g., show error message to the user)
     });
+```
