@@ -7,7 +7,7 @@ Future<void> initializeNodemongo() async {
   const appId = 'YOUR_APPID'; // Your unique application Id
 
   try {
-    final nodeMongoApp = NodeMongoApp(appId: appId);
+    final remBaseApp = RemBaseApp(appId: appId);
     print('Nodemongo Initialized');
   } catch (e) {
     print('Error initializing Nodemongo: $e');
