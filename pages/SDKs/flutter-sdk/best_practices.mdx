@@ -13,8 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:your_package/rembase-dart-sdk.dart'; // Import NodeMongo package
 
 // Initialize NodeMongo with appId
-final NodeMongoApp nodeMongoApp =
-      NodeMongoApp(appId: 'appId');
+RemBaseApp remBaseApp = RemBaseApp(appId: 'appId');
 
 void main() {
   runApp(MyApp());
@@ -65,10 +64,10 @@ class HomePage extends StatelessWidget {
 
 ### **Explanation**:
 1. **App Initialization**:  
-   - The `NodeMongoApp(appId: 'appId');` function is called in the `main.dart` file, ensuring the app is initialized before the Flutter app starts.
+   - The `RemBaseApp(appId: 'appId');` function is called in the `main.dart` file, ensuring the app is initialized before the Flutter app starts.
    
 2. **Global Usage**:  
-   - By importing `main.dart`, you can access the `nodeMongoApp` in any widget or page where it is needed, just like the original example in React/Next.js.
+   - By importing `main.dart`, you can access the `RemBaseApp` in any widget or page where it is needed, just like the original example in React/Next.js.
 
 3. **Clean Code**:  
    - The separation of app initialization and component usage follows best practices, keeping your code modular and clean.
