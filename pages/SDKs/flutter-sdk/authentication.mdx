@@ -13,9 +13,8 @@ Anonymous is one of the most easiest authentication method available in the mark
 
 ```dart
 
-final NodeMongoApp nodeMongoApp = NodeMongoApp(
+final RemBaseApp remBaseApp = RemBaseApp(
   appId: <appId>, 
-  user: <NodeMongoUser>?, // Optional user initialization
 );
 
 Future<void> yourOwnLoginFunction() async {
@@ -23,7 +22,7 @@ Future<void> yourOwnLoginFunction() async {
   final CredentialTypes credential = CredentialTypes.anonymous();
 
   // Attempt anonymous login
-  final response = await nodeMongoApp.anonymousLogin(credential);
+  final response = await remBaseApp.anonymousLogin(credential);
 
   response
       .onSuccess((data) {
@@ -42,7 +41,7 @@ To use email password login you must register and verify the user first.
 
 #### Register
 ```dart
-final response = await nodeMongoApp.registerUser(email, password);
+final response = await remBaseApp.registerUser(email, password);
 
 response
     .onSuccess((data) {
@@ -60,7 +59,7 @@ You might want to prompt user to check their email and spam
 To send verification email again use
 
 ```dart
-final response = await nodeMongoApp.resendVerificationEmail(emailController.text);
+final response = await remBaseApp.resendVerificationEmail(emailController.text);
 
 response
     .onSuccess((data) {
@@ -82,7 +81,7 @@ final credentials = CredentialTypes.emailPassword(
   password: password,
 );
 
-final response = await nodeMongoApp.login(credentials);
+final response = await remBaseApp.login(credentials);
 
 response
     .onSuccess((data) {
@@ -100,7 +99,7 @@ Step1. Send the otp to the user's email
 
 ```dart
 
-final response = await nodeMongoApp.sendEmailOtp(email);
+final response = await remBaseApp.sendEmailOtp(email);
 
 response
     .onSuccess((data) {
@@ -115,7 +114,7 @@ Step2. You can use that OTP and the email to login to the User.
 ```dart
 
 final CredentialTypes credentials = CredentialTypes.emailOtp(email, otp)
-final response = await nodeMongoApp.login(credentials);
+final response = await remBaseApp.login(credentials);
     response
     .onSuccess((data) {
       // Handle data (e.g., update UI or notify user)
@@ -176,7 +175,7 @@ Note: If you are using your own email credentials you might want to prompt users
 ---
 
 ```dart
-final response = await nodeMongoApp.googleLogin();
+final response = await remBaseApp.googleLogin();
 
 response
     .onSuccess((data) {
@@ -201,7 +200,7 @@ phone auth requires two steps
 Please make sure the phone contains the country code eg. +1 
 
 ```dart
-final response = await nodeMongoApp.sendPhoneOtp(<phoneNumber>);
+final response = await remBaseApp.sendPhoneOtp(<phoneNumber>);
 
 response
     .onSuccess((data) {
@@ -218,7 +217,7 @@ once the user recieves the OTP take the otp and call
 ```dart
 final CredentialTypes credential = CredentialTypes.phone(<phoneNumber>, <OTP>);
 
-final response = await nodeMongoApp.login(credential);
+final response = await remBaseApp.login(credential);
 response
     .onSuccess((data) {
       // Handle data (e.g., update UI or notify user)
@@ -235,7 +234,7 @@ response
 ## LogOut
 use the code snippet below to log out user.
 ```dart
- await NodeMongoUser.logOut();
+ await RemBaseUser.logOut();
  //your code
 ```
 
