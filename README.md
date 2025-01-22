@@ -1,6 +1,6 @@
 # Nextra Docs Template 
 
-Nodemongo documentation [Nodemongo](https://blog.nodemongo.revtrance.com).
+RemBase documentation [RemBase](https://blog.Rembase.revtrance.com).
 
 [**Live Demo →**](https://nextra-docs-template.vercel.app)
 

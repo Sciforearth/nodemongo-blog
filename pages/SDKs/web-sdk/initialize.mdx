@@ -2,16 +2,16 @@
 ## Initialize
 
 This code is to be placed in the starting of your web application.
-If you are using App.js/root page.js would be the ideal place to initialize nodemongo.
+If you are using App.js/root page.js would be the ideal place to initialize RemBase.
 ```javascript
-import {initializeNodemongo} from "nodemongo-web-sdk"
+import {initializeRembaseSync} from "rembase-web"
 
-export const app = await initializeNodemongo(<appId>, <selfHostUrl>?)
+export const app = await initializeRembaseSync(<appId>, <selfHostUrl>?)
 
 
 ```
 **appId** : your unique application Id in your project. 
 
-**selfHostUrl** : (optional) If you are self hosting the application by downloading the app from nodemongo. you can provide the url of your server.
+**selfHostUrl** : (optional) If you are self hosting the application by downloading the app from RemBase. you can provide the url of your server.
 
 Yes! our sdks are fully compatible with you selfhosting the project!

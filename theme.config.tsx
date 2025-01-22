@@ -2,7 +2,7 @@ import React from 'react'
 import { DocsThemeConfig } from 'nextra-theme-docs'
 
 const config: DocsThemeConfig = {
-  logo: <span>Nodemongo documentation</span>,
+  logo: <span>RemBase documentation</span>,
   project: {
     link: 'https://github.com/Sciforearth/nodemongo-blog',
   },
@@ -11,7 +11,7 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: 'https://github.com/Sciforearth/nodemongo-blog',
   footer: {
-    text: 'Nodemongo Documentation',
+    text: 'RemBase Documentation',
   },
 }
 
