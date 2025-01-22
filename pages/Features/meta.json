@@ -1,0 +1,7 @@
+{
+    "functions":"Cloud Functions",
+    "endpoints" : "HTTPS Endpoints",
+    "values": "Values",
+    "dependencies": "Dependencies"
+
+}
