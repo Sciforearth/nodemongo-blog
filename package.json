@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Nodemongo documentation",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
