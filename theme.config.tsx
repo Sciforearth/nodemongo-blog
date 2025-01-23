@@ -10,9 +10,7 @@ const config: DocsThemeConfig = {
     link: 'https://discord.com',
   },
   docsRepositoryBase: 'https://github.com/Sciforearth/nodemongo-blog',
-  footer: {
-    text: 'RemBase Documentation',
-  },
+  
 }
 
 export default config
