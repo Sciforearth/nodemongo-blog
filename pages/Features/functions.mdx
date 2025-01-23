@@ -1,0 +1,78 @@
+## Functions
+
+In the functions tab you can write cloud hosted functions that you can call from your client applications. 
+
+You can find functions tab in your project-> App-> Functions
+
+
+
+## Understanding functions
+
+
+###  Basic structure
+
+```js
+exports = async function(arg){
+
+//your js code here
+
+return {some_data}
+}
+```
+This is the basic structure of the function. You cannot change this format or else the code won't work
+
+### rembase Object
+You can use rembase to access your database,collections,user, values and other functions
+
+#### Access your mongodb collection
+```js
+const data_collection = rembase.services.get().db("database Name").collection("Collection name")
+
+// use collection to perform operations example
+
+const result = await data_collection.findOne({company:"revtrance"})
+
+
+```
+**You can connect to some other cluster or some other project by giving the mongodb uri in the get() function**
+``` 
+rembase.services.get(other_project_cluster_url)
+```
+
+
+#### Access users
+The following code snippet returns the user that called the function.
+```js
+const user = rembase.user
+
+const user_id = rembase.user.id
+const user_email = rembase.user.email
+
+//the custom data associated with the user
+const custom_data = rembase.user.custom_data
+
+```
+
+For example a user named William with email william@revtrance.com called this function from the client application.
+`rembase.user.email` will give you **william@revtrance** and rembase.user.id will give you the user id of william.
+
+#### Access values
+You can define values in the values tab and use them accross all functions.
+
+```js
+//this will return the value for the given value name
+
+const api_key= rembase.values.get("value_name")
+
+
+```
+
+#### callfunctions internally .
+
+Suppose you have created 2 functions named *getProfile* and *getPosts*
+
+```js
+let profile =await rembase.functions.execute("getProfile")
+let posts = await rembase.functions.execute("getPosts")
+return {profile,posts}
+``

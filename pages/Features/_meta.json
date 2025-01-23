@@ -1,0 +1,8 @@
+{
+    "functions" : "Cloud functions",
+    "endpoints": "Endpoints",
+    "values":"Application values and secrets",
+    "dependencies":"Add Dependencies"
+     
+}
+  
