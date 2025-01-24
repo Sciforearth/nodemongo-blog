@@ -6,11 +6,21 @@ If you are using App.js/root page.js would be the ideal place to initialize RemB
 ```javascript
 import {initializeRembaseSync} from "rembase-web"
 
-export const app = await initializeRembaseSync(<appId>, <selfHostUrl>?)
+export const app = await initializeRembaseSync(<appId>, <projectId>,<region>)
 
 
 ```
 **appId** : your unique application Id in your project. 
+
+*You can also download the backend once the development is complete and host it yourself*
+Initialize your selfhosted Backend
+```javascript
+import {initializeRembaseSync} from "rembase-web"
+
+export const app = await initializeRembaseSync(<appId>, <selfHostUrl>)
+
+
+```
 
 **selfHostUrl** : (optional) If you are self hosting the application by downloading the app from RemBase. you can provide the url of your server.
 
