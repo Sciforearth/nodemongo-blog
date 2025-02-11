@@ -85,9 +85,10 @@ Note: If you are using your own email credentials you might want to prompt users
 Go to google cloud console and create a OAuth ClientId and include your development host eg. localhost:3000 for development purposes
  
 ```javascript
-let credential = CredentialTypes.google(<clientId>)
+let credential = await CredentialTypes.google(<clientId>)
 let user = await app.login(credential)
 ```
+Note: google credentialType is asynchronous make sure to add *await*
 
 
 To use google login you must go to **Google cloud console** and create a client Id
