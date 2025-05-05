@@ -1,0 +1,33 @@
+
+# Understanding context
+
+Context object can be used to get reference to your databases,collections and values.
+
+To get reference to your databases
+```js 
+const user_db = context.services.get().db("<your DB name>")
+```
+
+To get your collection reference
+```js
+const user_collection = context.services.get().db("<your DB name>").collection("<Your collection name>")
+
+```
+
+To get collection to your environment values and secret
+
+```
+const secret_key = context.values.get("Some secret key")
+
+```
+
+To call some other pre defined function from current function
+
+```js
+const context.functions.execute("Function Name",...function params)
+
+#example
+const userId= "someId"
+const userPosts = context.functions.execute("getUserPost",userId)
+const userProfileData = context.functions.execute("getUserProfileData",userId)
+```
