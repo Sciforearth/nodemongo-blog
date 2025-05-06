@@ -2,6 +2,7 @@
 # Understanding context
 
 Context object can be used to get reference to your databases,collections and values.
+Tip: you can use keywords like rdb,rcoll,rval to automatically write these syntax.
 
 To get reference to your databases
 ```js 
@@ -16,8 +17,8 @@ const user_collection = context.services.get().db("<your DB name>").collection("
 
 To get collection to your environment values and secret
 
-```
-const secret_key = context.values.get("Some secret key")
+```js
+const secret_key = context.values.get("ValueName")
 
 ```
 
@@ -28,6 +29,7 @@ const context.functions.execute("Function Name",...function params)
 
 #example
 const userId= "someId"
-const userPosts = context.functions.execute("getUserPost",userId)
-const userProfileData = context.functions.execute("getUserProfileData",userId)
+const userPosts =await context.functions.execute("getUserPost",userId)
+const userProfileData = await context.functions.execute("getUserProfileData",userId)
 ```
+
