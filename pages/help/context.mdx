@@ -1,5 +1,5 @@
 
-# Understanding context
+# Understanding context/rembase
 
 Context object can be used to get reference to your databases,collections and values.
 Tip: you can use keywords like rdb,rcoll,rval to automatically write these syntax.
@@ -7,11 +7,16 @@ Tip: you can use keywords like rdb,rcoll,rval to automatically write these synta
 To get reference to your databases
 ```js 
 const user_db = context.services.get().db("<your DB name>")
+//or 
+const user_db = rembase.services.get().db("<your DB name>")
+
 ```
 
 To get your collection reference
 ```js
 const user_collection = context.services.get().db("<your DB name>").collection("<Your collection name>")
+//or
+const user_collection = rembase.services.get().db("<your DB name>").collection("<Your collection name>")
 
 ```
 
@@ -19,13 +24,18 @@ To get collection to your environment values and secret
 
 ```js
 const secret_key = context.values.get("ValueName")
+//or
+const secret_key = rembase.values.get("ValueName")
 
 ```
 
 To call some other pre defined function from current function
 
 ```js
-const context.functions.execute("Function Name",...function params)
+const result = await context.functions.execute("Function Name",...function params)
+//or
+const result = await rembase.functions.execute("Function Name",...function params)
+
 
 #example
 const userId= "someId"
